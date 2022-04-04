@@ -101,10 +101,28 @@ postulate
 -}
 
 +-identityʳ : (n : ℕ) → n + zero ≡ n
-+-identityʳ n = {!!}
++-identityʳ zero = 
+   begin
+      zero + zero 
+   ≡⟨⟩
+      zero
+   ∎
+
+
++-identityʳ (suc n) = 
+   begin 
+      suc (n + zero)
+   ≡⟨ cong suc (+-identityʳ n)⟩
+      suc n
+   ∎ 
 
 +-identityˡ : (n : ℕ) → zero + n ≡ n
-+-identityˡ n = {!!}
++-identityˡ n = 
+   begin
+      zero + n 
+   ≡⟨⟩ 
+      n
+   ∎
 
 +-suc : (n m : ℕ) → n + (suc m) ≡ suc (n + m)
 +-suc n m = {!!}
@@ -126,7 +144,7 @@ data Vec (A : Set) : ℕ → Set where
 
 {-
    Define the function `lookup` that looks up the value in a given
-   vector at a given natural number index.
+   vecor at a given natural number index.
 
    As the index below can be an arbitrary natural number, then we have
    to define `lookup` as a partial function. We do this by giving
